@@ -1,5 +1,10 @@
 # DarBots-Shared-Doc
+
+![4100Logo](static/teamImage/4100Logo.png)
+![5100Logo](static/teamImage/5100Logo.png)
+
 Shared documents for Darbots programmers.
+
 ## Useful Links
 
 - [2018 Rover Ruckus](2018)
