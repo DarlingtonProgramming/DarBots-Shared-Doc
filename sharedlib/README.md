@@ -574,4 +574,29 @@ The Z axis always points to the front of the robot and the X axis always points 
 
 ![Motor Rotation Definition](../static/image/MotorRotation.jpg)
 
-When you are initializing a `RobotWheel` class that uses `RobotAxis` as its coordinate system, the rotation of the wheel is the positive counterclockwise angle (or negative clockwise angle) with respect to the Z axis.   
+When you are initializing a `RobotWheel` class that uses `RobotAxis` as its coordinate system, the rotation of the wheel is the positive counterclockwise angle (or negative clockwise angle) of the wheel shaft with respect to the Z axis.   
+
+## The basis of Async - RobotNonBlockingDevice
+
+The `RobotNonBlockingDevice` is a java interface that standardizes all the behaviors of sensors that requires time to perform its job. It has three methods. `isBusy()`, which tells if the sensor has been assigned any work to do. `updateStatus()`, which lets the sensor check if the work is done. and `waitUntilFinish()` that gives programmer the ability to let the code to wait for the sensor to finish detecting before the next line of code gets executed.   
+
+## Connecting Motors to the program - RobotMotorType
+
+`RobotMotorType` is an java abstract class that gives a standardized interface for MotorControllers to get the specifications of motors. The specifications stored in `RobotMotorType` include `CountsPerRev`, the number of channel rises for the motor to turn one cycle, `RevolutionPerSecond`, the number of cycles the motor can go through in one second.
+
+## Uniformly control encoder-attached motors and no-encoder attached motors - RobotMotor
+
+`RobotMotor` is an interface that standardizes all motor behaviors and gives programmers the ability to let some motion parts to be encoder-optional. `RobotMotorWithEncoder` uses encoder values for its speed control, position readings and etc while `RobotMotorWithoutEncoder` uses motor specifications in `RobotMotorType` to calculate rotations the motor went through.
+
+## Smooth motion, right now - RobotMotorController
+
+`RobotMotorController` is a java class that gives the `RobotMotor` the ability to run tasks and automatically queue up tasks. It accepts `RobotMotorTask` implementions to be put into its task list and gives callback ability to tasks getting executed.
+
+## RobotMotionSystem - the fundemental base of treating every chassis equally!
+
+`RobotMotionSystem` is a java abstract class that gives uniform control over chassis, it also have the ability to queue up motion tasks for the robot motion system. It also put motors' encoder values into the `Robot2DPositionTracker` class.
+
+## Robot2DPositionTracker - Where am I?
+
+`Robot2DPositionTracker` is a class where our team put consideration of Mathematics into our programming. Its input values are automatically feed by `RobotMotionSystem`, and programmers only need to read its values.
+
