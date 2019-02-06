@@ -14,3 +14,17 @@ As we are using the centimeter unit, it is expressed as $ 365.76 \times 365.76 c
 ![Field Axis Definition](../static/image/FTC2018-FieldAxisDef.png)
 
 The Origin of the field is located on the center of the field. The Z axis goes to the blue alliance side while the X axis goes to the blue alliance crater / red alliance depot.
+
+### Vuforia Navigation
+
+#### Field Convertions
+
+![VuforiaFieldAndDarbotsField](../static/image/Vuforia20182019GameFieldAxisAndDarbotsAxis.jpg)
+
+#### Robot Convertions
+
+![VuforiaRobotAxis](../static/image/20182019GameVuforiaNavRobotAxis.jpg)
+
+![DarbotRobotAxis](../static/image/Darbots20182019GameRobotAxis.jpg)
+
+![VuforiaToDarbotRobotAxisConvertion](../static/image/20182019GameVuforiaNavToDarbotsEquations.jpg)
