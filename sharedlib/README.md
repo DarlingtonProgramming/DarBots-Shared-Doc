@@ -1,15 +1,17 @@
-# FTC SharedLib
+# [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/DarBots/tree/master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/DarlingtonSharedLib)
 
 FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.  
 
 ## Centural Focus
 
-The FTC Shared Lib is established on asynchronous idea - no action on the robot blocks the execution of the code flow unless the programmer instructs to do so.   
+The `Darbots FTC Shared Lib` is established on asynchronous idea - no action on the robot blocks the execution of the code flow unless the programmer instructs to do so.   
 This library has went through 4 iterations and this is the official document for the 4th iteration.   
+
+The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and manage to organize a robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as communication between parts, ease of debugging and more fallback mechanisms.   
 
 ### Compare and contrast
 
-|FTC Native Code|Darlington Shared Library Code Flow|
+|FTC Native Code|Darlington Shared Library Code|
 |-|-|
 |Cannot read rotations that a non-encoder attached motor went through|Can read approximations based on motor specifications|
 |No unique control over chassises & usually the movement is controlled by time duration|Unique control over different chassises & controlled by encoder readings|
