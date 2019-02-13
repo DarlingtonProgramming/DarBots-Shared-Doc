@@ -7,6 +7,20 @@ FTC SharedLib is an opensource library written by David Cao primarily for the ea
 The FTC Shared Lib is established on asynchronous idea - no action on the robot blocks the execution of the code flow unless the programmer instructs to do so.   
 This library has went through 4 iterations and this is the official document for the 4th iteration.   
 
+### Compare and contrast
+
+|FTC Native Code|Darlington Shared Library Code Flow|
+|-|-|
+|Cannot read rotations that a non-encoder attached motor went through|Can read approximations based on motor specifications|
+|No unique control over chassises & usually the movement is controlled by time duration|Unique control over different chassises & controlled by encoder readings|
+|No safety mechanism on linear slides, lifting devices, etc. |3 **unique** approaches combining hardware and software to prevent hardware failure|
+|No collaboration between parts, usually drivers manually move different modules to get out of the way of another module|Automated java class arranges the collaboration of parts|
+|Blocking code flow structure|Asynchronous code flow structure|
+|No position tracking software once lost navigation target|Encoder values calculation using `Robot2DPositionTracker` + vuforia navigation implemention|
+|Different code of mineral sampling between webcam and phone|Both webcam and phone abstracted into `RobotCamera`, sampling function class accepts the abstract class as a parameter|
+|Debugger difficulty|Global static class registers the telemetry and helps modules to easily register debug informations|
+
+
 ### Async and Code Structures
 In deciding whichever structure to use for our sharedlib, we choosed asynchronous. Compared to traditional FTC controlling softwares, asynchronous structure gives more possible action numbers in a fixed CPU time. Compared to multithreading, it gives programmers no potential problem about thread lock and shared memories. Here is a graph demonstration that helps you to get a better understanding of how asynchronous code structure works.
 
