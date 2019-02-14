@@ -21,6 +21,7 @@ The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a tru
 |No position tracking software once lost navigation target|Encoder values calculation using `Robot2DPositionTracker` + vuforia navigation implemention|
 |Different code of mineral sampling between webcam and phone|Both webcam and phone abstracted into `RobotCamera`, sampling function class accepts the abstract class as a parameter|
 |Debugger difficulty|Global static class registers the telemetry and helps modules to easily register debug informations|
+|Combo key that requires ordered movemnets usually blocks all controls|Combo key can be performed while other parts are allowed to move|
 
 
 ### Async and Code Structures
