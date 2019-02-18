@@ -46,7 +46,6 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorREVColorDistance;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -85,17 +84,13 @@ public class TM_AWithoutTM extends LinearOpMode {
         initVuforia();
         bucket.setPosition(0.8);
         teammark.setPosition(0.6);
-
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
-
-        /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
-
         waitForStart();
         teammark.setPosition(0.8);
         bucket.setPosition(0.8);
@@ -104,10 +99,8 @@ public class TM_AWithoutTM extends LinearOpMode {
                 tfod.activate();
                 runtime.reset();
             }
-
             while (opModeIsActive() && runtime.seconds()<2) {
                 if (tfod != null) {
-
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
@@ -135,19 +128,15 @@ public class TM_AWithoutTM extends LinearOpMode {
                                     telemetry.addData("Gold Mineral Position", "Center" + key);
                                 }}}
                         telemetry.update();}}}}
-
         if (tfod != null) {
             tfod.shutdown();
         }
-
         WeakDescend();
         if (tfod != null) {
             tfod.shutdown();
         }
-
         weakChugou();
         sleep(500);
-
         switch (key) {
             case (0):
                 telemetry.addLine("zuo");
@@ -175,7 +164,6 @@ public class TM_AWithoutTM extends LinearOpMode {
                 encoderDrive(0.3,30,30,5);
                 bucket.setPosition(0);
                 stop();
-
                 break;
             case (1):
                 telemetry.addLine("zhong");
@@ -201,7 +189,6 @@ public class TM_AWithoutTM extends LinearOpMode {
                 encoderDrive(0.7,50,50,5);
                 bucket.setPosition(0);
                 stop();
-
                 break;
             case (2):
                 telemetry.addLine("you");
@@ -230,9 +217,7 @@ public class TM_AWithoutTM extends LinearOpMode {
                 encoderDriveCe(0.3,-7,7,3);
                 encoderDrive(0.7,42,42,5);
                 bucket.setPosition(0);
-
                 stop();
-
                 break;
             case (-1):
                 telemetry.addLine("default");
@@ -260,14 +245,11 @@ public class TM_AWithoutTM extends LinearOpMode {
                 stop();
                 break;
         }
-
         sleep(3000);
         ka();
-
         bucket.setPosition(1.0);
         stop();
     }
-    
     void hardwareInitialize(){
         frontleft = hardwareMap.dcMotor.get("FL");
         frontright = hardwareMap.dcMotor.get("FR");
@@ -294,7 +276,6 @@ public class TM_AWithoutTM extends LinearOpMode {
         backright.setDirection(DcMotor.Direction.REVERSE);
         lift.setDirection(DcMotor.Direction.REVERSE);
     }
-
     public void WeakDescend(){
         lift.setPower(1.0);
         sleep(6800);
@@ -351,7 +332,6 @@ public class TM_AWithoutTM extends LinearOpMode {
             backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
@@ -382,7 +362,6 @@ public class TM_AWithoutTM extends LinearOpMode {
                         frontright.getCurrentPosition());
                 telemetry.update();
             }
-
             frontleft.setPower(0);
             backright.setPower(0);
             frontright.setPower(0);
@@ -397,14 +376,12 @@ public class TM_AWithoutTM extends LinearOpMode {
             backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
-
     public void initVuforia() {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
         parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
     }
-
     public void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -412,7 +389,6 @@ public class TM_AWithoutTM extends LinearOpMode {
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
-
     public void weakChugou(){
         encoderDriveCe(0.3,-5,5,2);
     }
