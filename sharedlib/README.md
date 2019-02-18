@@ -58,9 +58,7 @@ import java.util.List;
 
 @Autonomous (name = "TM_AWithoutTM", group = "4100")
 //@Disabled
-
 public class TM_AWithoutTM extends LinearOpMode {
-
     DcMotor frontleft, frontright, backleft, backright, lift, slides, collector, dump;
     Servo  bucket, teammark;
     TouchSensor maxSlide, minSlide;
@@ -77,7 +75,6 @@ public class TM_AWithoutTM extends LinearOpMode {
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
     private int key = -1;
-
     @Override
     public void runOpMode() {
         hardwareInitialize();
