@@ -2,12 +2,14 @@
 
 FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.  
 
-## Centural Focus
+## Main Focuses
 
 The `Darbots FTC Shared Lib` is established on asynchronous idea - no action on the robot blocks the execution of the code flow unless the programmer instructs to do so.   
+
 This library has went through 4 iterations and this is the official document for the 4th iteration.   
 
-The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and manage to organize a robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as communication between parts, ease of debugging and more fallback mechanisms.   
+
+The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and organize the robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as communication between parts, ease of debugging and more fallback mechanisms.   
 
 ### Compare and contrast
 
@@ -64,8 +66,6 @@ public class TM_AWithoutTM extends LinearOpMode {
     Servo  bucket, teammark;
     TouchSensor maxSlide, minSlide;
     private ElapsedTime     runtime = new ElapsedTime();
-
-
     static final double     COUNTS_PER_MOTOR_REV    = 1120 ;
     static final double     Motor_GEAR_REDUCTION    = 0.5 ;
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;
@@ -74,11 +74,8 @@ public class TM_AWithoutTM extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
-
     private static final String VUFORIA_KEY = PrivateSettings.VUFORIALICENSE;
-
     private VuforiaLocalizer vuforia;
-
     private TFObjectDetector tfod;
     private int key = -1;
 
@@ -125,8 +122,7 @@ public class TM_AWithoutTM extends LinearOpMode {
                                     silverMineral1X = (int) recognition.getLeft();
                                 } else {
                                     silverMineral2X = (int) recognition.getLeft();
-                                }
-                            }
+                                }}
                             if ((goldMineralX != -1 && silverMineral1X != -1) || (silverMineral2X != -1 && silverMineral1X != -1)) {
                                 if (goldMineralX == -1 && silverMineral1X != -1) {
                                     key = 2;
@@ -137,14 +133,8 @@ public class TM_AWithoutTM extends LinearOpMode {
                                 } else {
                                     key = 1;
                                     telemetry.addData("Gold Mineral Position", "Center" + key);
-                                }
-                            }
-                        }
-                        telemetry.update();
-                    }
-                }
-            }
-        }
+                                }}}
+                        telemetry.update();}}}}
 
         if (tfod != null) {
             tfod.shutdown();
@@ -157,7 +147,6 @@ public class TM_AWithoutTM extends LinearOpMode {
 
         weakChugou();
         sleep(500);
-
 
         switch (key) {
             case (0):
@@ -270,7 +259,6 @@ public class TM_AWithoutTM extends LinearOpMode {
                 bucket.setPosition(0);
                 stop();
                 break;
-
         }
 
         sleep(3000);
@@ -279,44 +267,32 @@ public class TM_AWithoutTM extends LinearOpMode {
         bucket.setPosition(1.0);
         stop();
     }
-
-
-
-
+    
     void hardwareInitialize(){
         frontleft = hardwareMap.dcMotor.get("FL");
         frontright = hardwareMap.dcMotor.get("FR");
         backleft = hardwareMap.dcMotor.get("BL");
         backright = hardwareMap.dcMotor.get("BR");
-
         frontleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
         frontleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
         lift = hardwareMap.dcMotor.get("lift");
-
         collector = hardwareMap.dcMotor.get("collector");
         slides = hardwareMap.dcMotor.get("slides");
         bucket = hardwareMap.servo.get("bucket");
         teammark = hardwareMap.servo.get("tm");
-
         minSlide = hardwareMap.touchSensor.get("minSlide");
         maxSlide = hardwareMap.touchSensor.get("maxSlide");
-
         dump = hardwareMap.dcMotor.get("dump");
-
         slides.setDirection(DcMotor.Direction.REVERSE);
         frontright.setDirection(DcMotor.Direction.REVERSE);
         backright.setDirection(DcMotor.Direction.REVERSE);
         lift.setDirection(DcMotor.Direction.REVERSE);
-
     }
 
     public void WeakDescend(){
@@ -324,9 +300,6 @@ public class TM_AWithoutTM extends LinearOpMode {
         sleep(6800);
         lift.setPower(0);
     }
-
-
-    //
     public void ka(){
         frontleft.setPower(0);
         backleft.setPower(0);
@@ -334,61 +307,48 @@ public class TM_AWithoutTM extends LinearOpMode {
         backright.setPower(0);
         sleep(500);
     }
-
-
     public void encoderDriveCe(double speed,
                                double leftInches, double rightInches,
                                double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
-
         if (opModeIsActive()) {
-
             newLeftTarget = frontleft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
             newRightTarget = frontright.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
             frontleft.setTargetPosition(newLeftTarget);
             backright.setTargetPosition(newLeftTarget);
             frontright.setTargetPosition(newRightTarget);
             backleft.setTargetPosition(newRightTarget);
-
             frontleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             frontright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             runtime.reset();
             frontleft.setPower(Math.abs(speed));
             backright.setPower(Math.abs(speed));
             frontright.setPower(Math.abs(speed));
             backleft.setPower(Math.abs(speed));
-
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (frontleft.isBusy() && frontright.isBusy())) {
-
-                telemetry.addData("FL",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("FR",  "Running at %7d :%7d",
+                    (frontleft.isBusy() && frontright.isBusy())) {    
+                    telemetry.addData("FL",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
+                    telemetry.addData("FR",  "Running at %7d :%7d",
                         frontleft.getCurrentPosition(),
                         frontright.getCurrentPosition());
-
                 telemetry.update();
             }
-
             frontleft.setPower(0);
             backright.setPower(0);
             frontright.setPower(0);
             backleft.setPower(0);
-
             frontleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
             frontright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             frontleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            //  sleep(250);
         }
     }
 
@@ -397,36 +357,29 @@ public class TM_AWithoutTM extends LinearOpMode {
                              double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
-
         if (opModeIsActive()) {
-
             newLeftTarget = frontleft.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
             newRightTarget = frontright.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
             frontleft.setTargetPosition(newLeftTarget);
             backleft.setTargetPosition(newLeftTarget);
             frontright.setTargetPosition(newRightTarget);
             backright.setTargetPosition(newRightTarget);
-
             frontleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             frontright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
             runtime.reset();
             frontleft.setPower(Math.abs(speed));
             backright.setPower(Math.abs(speed));
             frontright.setPower(Math.abs(speed));
             backleft.setPower(Math.abs(speed));
-
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (frontleft.isBusy() && frontright.isBusy())) {
-
                 telemetry.addData("FL",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
                 telemetry.addData("FR",  "Running at %7d :%7d",
                         frontleft.getCurrentPosition(),
                         frontright.getCurrentPosition());
-
                 telemetry.update();
             }
 
@@ -434,28 +387,21 @@ public class TM_AWithoutTM extends LinearOpMode {
             backright.setPower(0);
             frontright.setPower(0);
             backleft.setPower(0);
-
             frontleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
             frontright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             frontleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            //  sleep(250);
         }
     }
 
     public void initVuforia() {
-
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
         parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
-
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
     }
 
