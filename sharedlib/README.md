@@ -55,10 +55,6 @@ import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.Privat
 
 import java.util.List;
 
-/**
- * Created by iwu on 4/10/18.
- */
-
 @Autonomous (name = "TM_AWithoutTM", group = "4100")
 //@Disabled
 
