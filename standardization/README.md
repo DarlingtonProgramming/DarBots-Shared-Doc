@@ -49,10 +49,10 @@ The X axis values increase to the right.
 
 Looking at the origin from the RED WALL, the Y axis extends through the origin point and runs up and down in a vertical line.   
 
-Increasing Z values extend upwards.   
+Increasing Y values extend upwards.   
 
 #### 2.2.5 Z-Axis
 
 Looking at the origin from the RED WALL, the Z axis extends through the origin point and runs out and in, perpendicular to the RED WALL.   
 
-Increasing Y values run out (away) from the RED WALL.   
+Increasing Z values run out (away) from the RED WALL.   
