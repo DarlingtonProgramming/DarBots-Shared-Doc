@@ -1,4 +1,4 @@
-# [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/DarBots/tree/master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/DarlingtonSharedLib)
+# [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone/tree/master/DarbotsFtcLib/src/main/java/org/darbots/darbotsftclib/)
 
 FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.  
 

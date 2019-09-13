@@ -5,7 +5,13 @@
 
 Shared documents for Darbots programmers.
 
-## Useful Links
+## Useful Links (2019)
+
+- [Measurement/Coordinate Standardization](standardization)
+- [FTC Shared Lib](sharedlib)
+- [Robot Building Workflow](workflow)
+
+## Useful Links (2018)
 
 - [2018 Rover Ruckus](2018)
 - [FTC Shared Lib](sharedlib)
