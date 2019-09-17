@@ -17,7 +17,7 @@ The range of normalized degree angles are `[-180, 180)`
 
 The range of normalized radian angles are `[-2π, 2π)`   
 
-## 2.0 Coordinate System Standardization
+## 2.0 Darbots Coordinate System Standardization
 
 ### 2.1 Rotation Standardization
 
@@ -59,7 +59,7 @@ Increasing Y values extend upwards.
 
 #### 2.2.6 Initial Position of a Robot
 
-The Field `(0,0,0)[0,0,0]` Position indicates that the robot is sitting in the center of the field, with its Robot Coordinate System's positive Y direction pointing in the positive Y direction of the field.   
+The Field `(0,0,0)[0,0,0]` Position indicates that the robot is sitting in the center of the field, with its Robot Coordinate System's positive Z direction (Robot Front) pointing in the positive Z direction of the field.   
 
 ### 2.3 Robot Coordinate System
 
@@ -85,3 +85,54 @@ Looking at the origin from the very back of the robot, the Y axis extends throug
 
 Increasing Y values extend upwards.   
 
+## 3.0 FTC-Vuforia Coordinate System Definition
+
+### 3.1 Rotation Standardization
+
+Same as Darbots Coordinate System Rotation Standardization.   
+
+### 3.2 Field Coordinate System
+
+#### 2.2.1 Reference Frame
+
+Same as Darbots Field Coordinate System Reference Frame.   
+
+#### 2.2.2 Origin
+
+Same as Darbots Field Coordinate System Origin.   
+
+#### 2.2.3 X-Axis
+
+Same as Darbots Field Coordinate System X-Axis.   
+
+#### 2.2.4 Y-Axis
+
+Same as Darbots Field Coordinate System Z-Axis.   
+
+#### 2.2.5 Z-Axis
+
+Same as Darbots Field Coordinate System Y-Axis.   
+
+#### 2.2.6 Initial Position of a Robot
+
+The Field `(0,0,0)[0,0,0]` Position indicates that the robot is sitting in the center of the field, with its FTC-Vuforia Robot Coordinate System's positive X direction (Robot Front) pointing in the positive X direction of the field.   
+
+### 3.3 Robot Coordinate System
+
+#### 3.3.1 Origin
+
+Same as Darbots Robot Coorinate System Origin.   
+
+#### 3.3.2 X-Axis
+
+Same as Darbots Robot Coordinate System Z-Axis.   
+
+#### 3.3.3 Y-Axis
+
+Looking at the origin from the very back of the robot, the Y axis extends through the origin point and runs to the right and left.   
+
+The X axis values increase to the left.   
+
+#### 3.3.4 Z-Axis
+
+Same as Darbots Robot Coordinate System Y-Axis.   
