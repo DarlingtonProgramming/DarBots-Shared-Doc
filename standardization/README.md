@@ -45,14 +45,43 @@ Looking at the origin from the RED WALL, the X axis extends through the origin p
 
 The X axis values increase to the right.   
 
-#### 2.2.4 Y-Axis
+#### 2.2.4 Z-Axis
+
+Looking at the origin from the RED WALL, the Z axis extends through the origin point and runs out and in, perpendicular to the RED WALL.   
+
+Increasing Z values run out (away) from the RED WALL.   
+
+#### 2.2.5 Y-Axis
 
 Looking at the origin from the RED WALL, the Y axis extends through the origin point and runs up and down in a vertical line.   
 
 Increasing Y values extend upwards.   
 
-#### 2.2.5 Z-Axis
+#### 2.2.6 Initial Position of a Robot
 
-Looking at the origin from the RED WALL, the Z axis extends through the origin point and runs out and in, perpendicular to the RED WALL.   
+The Field `(0,0,0)[0,0,0]` Position indicates that the robot is sitting in the center of the field, with its Robot Coordinate System's positive Y direction pointing in the positive Y direction of the field.   
 
-Increasing Z values run out (away) from the RED WALL.   
+### 2.3 Robot Coordinate System
+
+#### 2.3.1 Origin
+
+THe (0,0,0) of the Robot Coordinate System is the point in the center of the Robot, equidistant from the very front of the robot and the very back of the robot, as well as equidistant from the very left of the robot and the very right of the robot. The origin always sits on the floor mat.   
+
+#### 2.3.2 X-Axis
+
+Looking at the origin from the very back of the robot, the X axis extends through the origin point and runs to the right and left.   
+
+The X axis values increase to the right.   
+
+#### 2.3.3 Z-Axis
+
+Looking at the origin from the very back of the robot, the Y axis extends through the origin point and runs to the front and back.   
+
+The Y axis values increase to the front.   
+
+#### 2.3.4 Y-Axis
+
+Looking at the origin from the very back of the robot, the Y axis extends through the origin point and runs up and down in a vertical line.   
+
+Increasing Y values extend upwards.   
+
