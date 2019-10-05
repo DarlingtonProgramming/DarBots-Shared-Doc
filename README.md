@@ -7,7 +7,8 @@ Shared documents for Darbots programmers.
 
 ## Useful Links (2019)
 
-- [Measurement/Coordinate Standardization](standardization)
+- [Measurement/Coordinate Standardization](standardization/Angles_And_Coordinates.md)
+- [Log Files Standardization](standardization/Log_Files.md)
 - [FTC Shared Lib](sharedlib)
 - [Robot Building Workflow](workflow)
 
