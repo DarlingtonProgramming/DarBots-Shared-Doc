@@ -131,8 +131,10 @@ Same as Darbots Robot Coordinate System Z-Axis.
 
 Looking at the origin from the very back of the robot, the Y axis extends through the origin point and runs to the right and left.   
 
-The X axis values increase to the left.   
+The Y axis values increase to the left.   
 
 #### 3.3.4 Z-Axis
 
 Same as Darbots Robot Coordinate System Y-Axis.   
+
+## 4.0 Conversion Between two Coordinate Systems

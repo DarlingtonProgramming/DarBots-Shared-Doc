@@ -29,7 +29,7 @@ The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a tru
 ### Async and Code Structures
 In deciding whichever structure to use for our sharedlib, we choosed asynchronous. Compared to traditional FTC controlling softwares, asynchronous structure gives more possible action numbers in a fixed CPU time. Compared to multithreading, it gives programmers no potential problem about thread lock and shared memories. Here is a graph demonstration that helps you to get a better understanding of how asynchronous code structure works.
 
-![Traditional FTC RC Structure](../static/image/Traditional_Structure.png)
+![Traditional FTC RC Structure](../static/image/sharedLib_Article/Traditional_Structure.png)
 
 In this demonstration, a traditional RC Code Structure always wait for a sensor to finish its job before executing other tasks and even if people think of asynchronous code in native FTC code, the code just looks awful. Here is an exmaple.
 
@@ -394,7 +394,7 @@ public class TM_AWithoutTM extends LinearOpMode {
 
 This is 4100's code for the Northern georgia league tournament. The code just takes millions of years to understand. This is not how java is meant to be, and involves no art in coding. Even though the programmer tried to wrap around some functions, it just makes no sense for us on what the code is doing exactly. And clearly there are no fallback mechanisms.
 
-![Asynchronous Coding Structure](../static/image/Async_Structure.png)
+![Asynchronous Coding Structure](../static/image/sharedLib_Article/Async_Structure.png)
 
 In this demonstration, the async coding structure gives programmer the freedom to go back to the next code segment as long as the sensor recieved the order to perform a task. It does not wait for the sensor to finish, but programmers are asked to constantly call UpdateStatus() method to let the sensor to check whether its work is finished. Our library also gives a callback mechanism that allows code to be automatically executed after the sensor performed its job.
 
@@ -482,31 +482,10 @@ After the comparison between native codes and the library codes, we can probably
 In order for the library to connect the building part and the programming part, we have to put parameters into the program. One of the most important parameters to understand is the two axises.
 The two axies use the same basic class `Robot2DPositionIndicator` and `Robot3DPositionIndicator` to illustrate their datas.   
 
-Usually `Robot2DPositionIndicator` is used more often, and it is extended into `Robot2DPositionFieldAxisIndicator` and `Robot2DPositionRobotAxisIndicator`.
+Usually `Robot2DPositionIndicator` is used more often.   
 
-### Field Axis
+See [Angles and Coordinates Definition](../standardization/Angles_And_Coordinates.md)   
 
-Field Axis is a coordinate system that is used to indicate a specific point on the field.   
-
-![Field Axis](../static/image/FTC2018-FieldAxisDef.png)
-
-The X, Y and Z axis can be completely determined by the programmer themselves, but inside `Darbots`, they are determined by group discussion at the beginning of the season, and the standards can be found in this repository.   
-
-When the robot is pointing at rotation 0 deg of the field axis, if means the robot Z axis is pointing at the Z axis of the field (the direction of X, Y, Z axis of the field axis and the robot axis should match with each other)
-
-`Robot2DPositionFieldAxisIndicator` and `Robot2DPositionIndicator` can be used to indicate a field axis, a `Robot2DPositionFieldAxisIndicator` is a public class inside `Robot2DPositionTracker`, which means it can only be initialized when a `Robot2DPositionTracker` Object exists. When converting field axis to robot axis, simply use the `toRobotAxis()` method in `Robot2DPositionFieldAxisIndicator`.
-
-### Robot Axis
-
-Robot Axis is a coordinate system that is used to indicate a specific point on the robot or with respect to the robot.   
-
-![Robot Axis](../static/image/RobotAxisDef.png)
-
-The Z axis always points to the front of the robot and the X axis always points to the right side of the robot. The origin can be determined by the programmers. Inside `Darbots`, they are determined by group discussion at the beginning of the season, and the standards can be found in this repository.   
-
-![Motor Rotation Definition](../static/image/MotorRotation.jpg)
-
-When you are initializing a `RobotWheel` class that uses `RobotAxis` as its coordinate system, the rotation of the wheel is the positive counterclockwise angle (or negative clockwise angle) of the wheel shaft with respect to the Z axis.   
 
 ## The basis of Async - RobotNonBlockingDevice
 
