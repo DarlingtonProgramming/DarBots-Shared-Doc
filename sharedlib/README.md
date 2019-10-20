@@ -1,13 +1,22 @@
-# [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone/tree/master/DarbotsFtcLib/src/main/java/org/darbots/darbotsftclib/)
+# [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)
 
-FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.  
+FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.   
+
+Major advantages:   
+1. Encoder + Gyro Guided Autonomous with ever fewer lines of code than native FTC codes.
+2. Position Tracker based on encoder + Vuforia.
+3. Wrapped up season game element recognition classes. (Both Tensorflow Skystone Recognition + Vuforia Skystone Recognition)
+4. Prevention of DC Motor from stalling by adding a time limit to each motor movement
+5. Ability to use DC Motor as a servo (through encoders)
+6. Easy Logging functionalities.
+7. Ability to store informations on phone.
+
 
 ## Main Focuses
 
 The `Darbots FTC Shared Lib` is established on asynchronous idea - no action on the robot blocks the execution of the code flow unless the programmer instructs to do so.   
 
 This library has went through 4 iterations and this is the official document for the 4th iteration.   
-
 
 The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and organize the robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as communication between parts, ease of debugging and more fallback mechanisms.   
 
