@@ -1,10 +1,11 @@
 # [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)
 
-FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.   
+Darbots FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.   
+To view the code, see [Our Repository](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)   
 
 ## Major advantages
 
-1. Encoder + Gyro Guided + Steadily Speeding Up Autonomous X / Z Axis Movements with ever fewer lines of code than native FTC codes.
+1. Encoder + Gyro Guided + Steadily Speeding Up Autonomous X / Z Axis Movements with even fewer lines than native FTC codes.
 2. Position Tracker based on encoder + Vuforia.
 3. Wrapped up season game element recognition classes. (Both Tensorflow Skystone Recognition + Vuforia Skystone Recognition)
 4. Prevention of DC Motor from stalling by adding a time limit to each motor movement

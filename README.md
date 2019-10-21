@@ -5,6 +5,7 @@
 
 Darbots aims to build safer and more efficient robots by using software fallback mechanisms and hardware advancements.   
 This is the shared documents for Darbots / Darbots-Lib programmers.   
+Our Darbots-Lib and our team code are open-sourced via [Github](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)   
 
 
 ## Useful Links (2019)
