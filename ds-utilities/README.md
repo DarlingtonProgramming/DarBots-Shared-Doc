@@ -18,7 +18,7 @@ Now since we have activated Developer Options on our phone, we can enable USB De
 
 ### 1.2 Install Android Toolchains on Your Computer
 
-#### 1.2.1 Install Platform Toolds 
+#### 1.2.1 Install Platform Tools 
 If you have your Android Studio Installed, skip this step, and go to step 1.2.2.   
 Download [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools), Unzip them to a folder.   
 
