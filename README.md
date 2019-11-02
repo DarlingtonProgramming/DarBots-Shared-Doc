@@ -15,3 +15,5 @@ Our Darbots-Lib and our team code are open-sourced via [Github](https://github.c
 - [FTC Shared Lib](sharedlib)
 - [Robot Building Workflow](workflow)
 - [Driver Station Utilities](ds-utilities)
+- [Android Studio Remote / Wifi Debugging Setup Guide](rc-tips/ASRemoteDebuggingSetup.md)
+- [Streaming RobotController Screen](rc-tips/RCStreamingScreen.md)

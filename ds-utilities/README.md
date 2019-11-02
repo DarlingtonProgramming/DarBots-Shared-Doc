@@ -45,7 +45,7 @@ You need to create a Soft Link / Symbolic Link for your ADB executive file.
 4. You are good to go!
 
 ### 1.3 Executing the Script!
-Connect your DS phone to the computer via a USB wire. If it prompts permission request on your phone, click `Yes`   
+Connect your DS phone to the computer via a USB cable. If it prompts permission request on your phone, click `Yes`   
 then...   
 
 1. If you have `Windows`, just double click on the `Utilities\install_newest_ds_windows.bat` file.   
