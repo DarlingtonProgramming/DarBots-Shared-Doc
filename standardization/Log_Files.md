@@ -22,6 +22,7 @@ The Log File is a plain TXT file encoded in ASCII with the JSON scheme. The main
     {
         "startTime": "Integer of how many seconds have passed since epoch",
         "runningOpMode": "Class Name of the Running OpMode",
+        "priority": "Integer of Thread Priority, from 1 to 10",
         "logs":[
             {
                 "module": "ServoUsingMotor",
@@ -35,6 +36,7 @@ The Log File is a plain TXT file encoded in ASCII with the JSON scheme. The main
     {
         "startTime": "Integer of how many seconds have passed since epoch",
         "runningOpMode": "Class Name of the Running OpMode",
+        "priority": "Integer of Thread Priority, from 1 to 10",
         "logs":[
 
         ]
