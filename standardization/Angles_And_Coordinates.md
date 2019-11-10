@@ -138,3 +138,20 @@ The Y axis values increase to the left.
 Same as Darbots Robot Coordinate System Y-Axis.   
 
 ## 4.0 Conversion Between two Coordinate Systems
+
+### 4.1 Conversion Between Robot Axis (Used for Phone Position Description Only)
+#### 4.1.1 Conversion from Darbots Robot to FTC Robot
+
+`\(x,y,z\)\[rotX,rotY,rotZ\]` => `\(z, -x, y\)\[ rotZ, -rotX, rotY - 90\]`
+
+#### 4.1.2 Conversion from FTC Robot to Darbots Robot
+
+`\(x,y,z\)\[rotX,rotY,rotZ\]` => `\(-y, z, x\)\[-rotY, rotZ + 90, rotX\]`
+
+### 4.2 Conversion Between Field Axis
+#### 4.2.1 Conversion from Darbots Field to FTC Field
+
+`\(x, y, z\)[rotX, rotY, rotZ\]` => `\(x, z, y\)\[rotX, rotZ, rotY + 90\]`
+
+#### 4.2.2 Conversion from FTC Field to Darbots Field
+`\(x, y, z\)\[rotX, rotY, rotZ\]` => `\(x, z, y\)\[rotX, rotZ - 90, rotY\]`
