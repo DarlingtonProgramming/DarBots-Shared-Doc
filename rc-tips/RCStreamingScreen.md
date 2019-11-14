@@ -23,7 +23,7 @@ Download the Scrcpy Software in the link below
 3. Type in `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` and press enter. During the installation process the command prompt might ask you several times for your password, just time them in and press enter.
 
 #### 2.2.2 Installing scrcpy and platform tools
-1. If you don't have Android Studio on your mac, type in `brew cask install android-platform-tools` and press enter, otherwise follow step 1.2.2 in [Darbots-DriverStation-Utilities Starter Guide](ds-utilities/README.md).
+1. If you don't have Android Studio on your mac, type in `brew cask install android-platform-tools` and press enter, otherwise follow step 1.2.2 in [Android Studio Remote / Wifi Debugging Setup Guide](ASRemoteDebuggingSetup.md).
 2. type in `brew install scrcpy` and press enter.
 
 ## 3.0 Use scrcpy software on your computer.

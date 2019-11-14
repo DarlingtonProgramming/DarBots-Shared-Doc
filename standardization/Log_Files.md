@@ -20,16 +20,21 @@ The Log File is a plain TXT file encoded in ASCII with the JSON scheme. The main
 ```json
 [
     {
-        "startTime": "Integer of how many seconds have passed since epoch",
-        "runningOpMode": "Class Name of the Running OpMode",
-        "priority": "Integer of Thread Priority, from 1 to 10",
+        "initTime": 0, //type: long, represents how many milliseconds passed since EPOCH until OpMode Initialization, time zone = UTC.
+        "startTime": 0, //type: long, how many milliseconds have passed since initialization until OpMode start, -1 = not started,
+        "endTime": 0, //type: long, how many milliseconds have passed since initialization until OpMode stop
+        "runningOpMode": "Robot4100Gen1Auto-BlueScanDouble", //Class Name of the Running OpMode
+        "priority": 0, //Integer of Thread Priority, from 1 to 10, 1 = lowest, 10 = highest priority
         "logs":[
             {
-                "module": "ServoUsingMotor",
-                "caption": "SystemStatus",
-                "timeStamp": "Epoch Time",
-                "content": "XXXXX",
-                "level": "Integer Value of Log Level"
+                "module": "ServoUsingMotor", //Which Module is reporting this log?
+                "caption": "SystemStatus", //What is the title of the log?
+                "timeStamp": 0, //type: long, how many milliseconds have passed since initialization until this log entry is recorded
+                "content": {
+                    "type": "xxx", //log type, described in string
+                    "value": {} //type: object
+                }, //type: object, the content of the log entry
+                "level": 1 //type: integer, integer value given by logLevel specified above.
             }
         ]
     },
