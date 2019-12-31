@@ -1,13 +1,14 @@
 # [Darbots FTC SharedLib](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)
 
-Darbots FTC SharedLib is an opensource library written by David Cao primarily for the ease of development of the FTC competition softwares.   
+Darbots FTC SharedLib is an opensource library, initiated and maintained by DarBots, primarily for the ease of development of the FTC competition softwares.   
 To view the code, see [Our Repository](https://github.com/DarlingtonProgramming/FTC-Darbots-SkyStone)   
+Documentation Version: V4.5.0 Alpha   
 
 ## Major advantages
 
-1. Encoder + Gyro Guided + Steadily Speeding Up Autonomous X / Z Axis Movements with even fewer lines than native FTC codes.
-2. Position Tracker based on encoder + Vuforia.
-3. Wrapped up season game element recognition classes. (Both Tensorflow Skystone Recognition + Vuforia Skystone Recognition)
+1. Advanced Motion Profiling / Pure Pursuit with PIDF control for Robot Movements. 
+2. Position Tracker based on Active Wheel Encoder / Passive Wheel Encoder + Vuforia.
+3. Wrapped up season game element recognition classes. (Tensorflow Skystone Recognition + Vuforia Skystone Recognition + DarBots Customized Vuforia Targets + PixelCounter Sampler)
 4. Prevention of DC Motor from stalling by adding a time limit to each motor movement
 5. Ability to use DC Motor as a servo (through encoders)
 6. Easy Logging functionalities.
@@ -19,7 +20,7 @@ The `Darbots FTC Shared Lib` is established on asynchronous idea - no action on 
 
 This library has went through 4 iterations and this is the official document for the 4th iteration.   
 
-The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and organize the robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as communication between parts, ease of debugging and more fallback mechanisms.   
+The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a truly comprehensive solution to FTC programming. Instead of writing codes in a single java class, we divide sensors, calculations and specific mechanisms into separate java classes, and organize the robot's controlling code into a class called `RobotCore`, which both Autonomous and TeleOp OpModes can use those collaborating modules through initializing a single `RobotCore` class. `Divide and Conquer` gives us many advantages such as collaboration between parts, ease of debugging and more fallback mechanisms.   
 
 ### Compare and contrast
 
@@ -32,7 +33,7 @@ The `Darbots FTC Shared Lib` used `Divide and Conquer` theory to establish a tru
 |Blocking code flow structure|Asynchronous code flow structure|
 |No position tracking software once lost navigation target|Encoder values calculation using `Robot2DPositionTracker` + vuforia navigation implemention|
 |Different code of mineral sampling between webcam and phone|Both webcam and phone abstracted into `RobotCamera`, sampling function class accepts the abstract class as a parameter|
-|Debugger difficulty|Global static class registers the telemetry and helps modules to easily register debug informations|
+|Debugger difficulty|Global static class registers the telemetry and helps modules to easily register debug informations + Wrapped debugger that writes log files|
 |Combo key that requires ordered movemnets usually blocks all controls|Combo key can be performed while other parts are allowed to move|
 
 
@@ -51,9 +52,11 @@ For the code structure, the library gives us a clearer understanding of autonomo
 
 After the comparison between native codes and the library codes, we can probably conclude that the library is more powerful and easier to code with.   
 
+Note: Passive / Active Wheel Position Trackers are the only exceptions to this code structure, the Library initializes a seperate thread for them, and all of their variables used are synchronized.   
+
 ## Understand the two axises
 
-In order for the library to connect the building part and the programming part, we have to put parameters into the program. One of the most important parameters to understand is the two axises.
+In order for the library to connect the building part and the programming part, we have to put parameters into the program. One of the most important parameters to understand is the two axises.   
 The two axies use the same basic class `Robot2DPositionIndicator` and `Robot3DPositionIndicator` to illustrate their datas.   
 
 Usually `Robot2DPositionIndicator` is used more often.   
@@ -63,25 +66,39 @@ See [Angles and Coordinates Definition](../standardization/Angles_And_Coordinate
 
 ## The basis of Async - RobotNonBlockingDevice
 
-The `RobotNonBlockingDevice` is a java interface that standardizes all the behaviors of sensors that requires time to perform its job. It has three methods. `isBusy()`, which tells if the sensor has been assigned any work to do. `updateStatus()`, which lets the sensor check if the work is done. and `waitUntilFinish()` that gives programmer the ability to let the code to wait for the sensor to finish detecting before the next line of code gets executed.   
+The `RobotNonBlockingDevice` is a java interface that standardizes all the behaviors of sensors that requires time to perform its job. It has three methods.   
+
+1. `isBusy()`, which tells if the sensor has been assigned any work to do.
+2. `updateStatus()`, which lets the sensor check if the work is done. 
+3. `waitUntilFinish()` that gives programmer the ability to let the code to wait for the sensor to finish detecting before the next line of code gets executed.   
 
 ## Connecting Motors to the program - RobotMotorType
 
-`RobotMotorType` is an java abstract class that gives a standardized interface for MotorControllers to get the specifications of motors. The specifications stored in `RobotMotorType` include `CountsPerRev`, the number of channel rises for the motor to turn one cycle, `RevolutionPerSecond`, the number of cycles the motor can go through in one second.
+`RobotMotorType` is an java interface that gives a standardized interface for MotorControllers to get the specifications of motors / CR Servos.   
+The specifications stored in `RobotMotorType` include:   
+
+1. `CountsPerRev`, the number of channel rises for the motor to turn one cycle.
+2. `RevolutionPerSecond`, the number of cycles the motor can go through in one second.
 
 ## Uniformly control encoder-attached motors and no-encoder attached motors - RobotMotor
 
-`RobotMotor` is an interface that standardizes all motor behaviors and gives programmers the ability to let some motion parts to be encoder-optional. `RobotMotorWithEncoder` uses encoder values for its speed control, position readings and etc while `RobotMotorWithoutEncoder` uses motor specifications in `RobotMotorType` to calculate rotations the motor went through.
+`RobotMotor` is an interface that standardizes all motor behaviors and gives programmers the ability to let some motion parts to be encoder-optional. 
+1. `RobotMotorWithEncoder` uses encoder values for its speed control, position readings and etc.
+2. `RobotMotorWithoutEncoder` uses motor specifications in `RobotMotorType` to calculate rotations the motor went through.
 
 ## Smooth motion, right now - RobotMotorController
 
-`RobotMotorController` is a java class that gives the `RobotMotor` the ability to run tasks and automatically queue up tasks. It accepts `RobotMotorTask` implementions to be put into its task list and gives callback ability to tasks getting executed.
+`RobotMotorController` is a java class that gives the `RobotMotor` the ability to run tasks and automatically queue up tasks.   
+It accepts `RobotMotorTask` implementions to be put into its task list and gives callback ability to tasks getting executed.   
 
 ## RobotMotionSystem - the fundemental base of treating every chassis equally!
 
-`RobotMotionSystem` is a java abstract class that gives uniform control over chassis, it also have the ability to queue up motion tasks for the robot motion system. It also put motors' encoder values into the `Robot2DPositionTracker` class.
+`RobotMotionSystem` is a java abstract class that gives uniform control over chassis.   
+it also have the ability to queue up motion tasks for the robot motion system.   
+It also put motors' encoder values into the `Robot2DPositionTracker` class.   
 
 ## Robot2DPositionTracker - Where am I?
 
-`Robot2DPositionTracker` is a class where our team put consideration of Mathematics into our programming. Its input values are automatically feed by `RobotMotionSystem`, and programmers only need to read its values.
+`Robot2DPositionTracker` is a class where our team put consideration of Mathematics into our programming.   
+Its input values are automatically feed by `RobotMotionSystem`, and programmers only need to read its values.   
 
